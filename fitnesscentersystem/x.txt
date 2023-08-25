@@ -1,0 +1,16 @@
+{
+    "array":["admin","moderator","customer"],
+    "admin":{
+        "sifre":"password3",
+        "yetki":2
+    },
+    "moderator":{
+        "sifre":"password2",
+        "yetki":0,
+        "bitis":"10/11/2024"
+    },
+    "customer":{
+        "sifre":"password1",
+        "yetki":1
+    }
+}

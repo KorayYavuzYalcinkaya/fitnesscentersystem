@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>List</title>
+    <style>
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        li {
+            border: solid black;
+            border-bottom-width: 2px;
+        }
+
+        ol {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body style="text-align: center;">
+    <header>
+        <X id="hesap"></X>
+        <button onclick="
+            window.location.href = 'http://127.0.0.1:3000/?hesap=' + params.hesap + '&sifre=' + params.sifre
+        ">Back</button>
+    </header>
+
+    <ol>
+        <li id="hesap1"></li>
+        <li id="hesap2"></li>
+        <li id="hesap3"></li>
+        <li id="hesap4"></li>
+        <li id="hesap5"></li>
+        <li id="hesap6"></li>
+        <li id="hesap7"></li>
+        <li id="hesap8"></li>
+        <li id="hesap9"></li>
+        <li id="hesap10"></li>
+    </ol>
+    <button onclick="
+        if(no == 0){
+            alert('You cant go back.')
+        }else {
+            no--
+            yazdir()
+        }
+    ">Back</button>
+    <C id="no"></C>
+    <button onclick="
+    if(X['array'].length/10 <= no+1){
+        alert('It is not possible to go forward')
+    }else {
+        no++
+        yazdir()
+    }
+">Next</button>
+
+    <script>
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+
+        document.getElementById("hesap").innerHTML = params.hesap;
+
+        var X = JSON.parse(params.liste)
+        var no = 0
+
+        var D1
+        function yazdir() {
+            for (D1 = 1; D1 != 11; D1++) {
+                document.getElementById("hesap" + D1).innerHTML = ""
+            }
+            for (D1 = 1; D1 != 11; D1++) {
+
+                if (returne() != undefined) {
+
+                    if (X[returne()]["yetki"] == 0) {
+
+                        document.getElementById("hesap" + D1).innerHTML = "<button onclick='sil("+D1+")' id='sil"+D1+"'>Delete</button> | "
+                        document.getElementById("hesap" + D1).innerHTML += "<button onclick='ekle("+D1+")' id='ekle"+D1+"'>Add month</button><input type='number' value='0' id='input" + D1 + "'></input> | "
+
+                    } else if (X[returne()]["yetki"] == 1 && params.yetki == 2) {
+
+                        document.getElementById("hesap" + D1).innerHTML = "<a><button onclick='sil("+D1+")' id='sil"+D1+"'>Delete</button></a> | "
+
+                    } else {
+
+                        document.getElementById("hesap" + D1).innerHTML = "You can't delete | "
+
+                    }
+
+                    document.getElementById("hesap" + D1).innerHTML += returne() + " | "
+
+                    if (X[returne()]["yetki"] == 0) {
+
+                        document.getElementById("hesap" + D1).innerHTML += X[returne()]["bitis"]
+
+                    } else {
+
+                        document.getElementById("hesap" + D1).innerHTML += "Moderator"
+
+                    }
+                }
+            }
+            document.getElementById("no").innerText = no+1
+        }
+        function returne() {
+            return X["array"][(D1 + (no * 10)) - 1]
+        }
+        yazdir()
+
+        function sil(X1){
+            if(document.getElementById("sil" + X1).innerText == "Delete"){
+
+                document.getElementById("sil" + X1).innerText = "Are you sure?"
+
+            }else {
+
+                window.location.href = "http://127.0.0.1:3000/sil/?hesap="+params.hesap+"&sifre="+params.sifre+"&sil="+X["array"][(X1 + (no * 10)) - 1]
+                
+            }
+        }
+
+        function ekle(X1){
+            if(document.getElementById("ekle" + X1).innerText == "Add month"){
+
+                document.getElementById("ekle" + X1).innerText = "Are you sure?"
+
+            }else {
+
+                window.location.href = "http://127.0.0.1:3000/ekle/?hesap="+params.hesap+"&sifre="+params.sifre+"&ehesap="+X["array"][(X1 + (no * 10)) - 1]+"&ay="+document.getElementById("input"+X1).value
+                
+            }
+        }
+    </script>
+</body>
+
+</html>

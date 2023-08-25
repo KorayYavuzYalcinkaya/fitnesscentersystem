@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Add Account</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        input {
+            font-size: 30px;
+        }
+
+        option {
+            font-size: 20px;
+        }
+
+        select {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="
+            window.location.href = 'http://127.0.0.1:3000/?hesap='+params.hesap+'&sifre='+params.sifre
+        ">Back</button>
+
+    <br><br>
+    <input placeholder="Account Name" type="text" id="hesap"><br>
+    <input placeholder="Password" type="text" id="sifre"><br>
+    <button onclick="gonder()" style="font-size: 20px;">Send</button>
+    <br><br>
+    <select id="yetki">
+        <option value="1">Moderator</option>
+        <option value="0">Customer</option>
+    </select>
+    <br>
+    <input type="number" value="0" id="ay" placeholder="how many months">
+    <script>
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+
+        function gonder() {
+            window.location.href = "http://127.0.0.1:3000/hekle/?hesap="+params.hesap+"&sifre="+params.sifre+"&ehesap="+document.getElementById('hesap').value+"&esifre="+document.getElementById('sifre').value+"&yetki="+document.getElementById('yetki').value+"&ay="+document.getElementById('ay').value
+        }
+    </script>
+</body>
+
+</html>

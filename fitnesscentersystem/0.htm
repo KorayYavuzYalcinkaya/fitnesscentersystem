@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Customer Account</title>
+</head>
+<body>
+    <div style="text-align: center; border: 5px solid black; font-size: 15px;margin: 300px;margin-left: 500px;margin-right: 500px;padding-top: 50px;padding-bottom: 50px;">
+        <h1 id="h1"></h1>
+
+        <h3 id="h3"></h3>
+        <a href="http://127.0.0.1:3000/"><button>Back</button></a>
+    </div>
+    <script>
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        
+        const Hesap = params.hesap
+        const Bitis = params.bitis
+        const Link = params.link
+
+        document.getElementById("h1").innerText = "Account: "+params.hesap
+        document.getElementById("h3").innerText = "End date: "+params.bitis
+        document.getElementById("button").href = params.link
+    </script>
+</body>
+</html>

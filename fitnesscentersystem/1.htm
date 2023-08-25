@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Moderator Account</title>
+    <style>
+        X {
+            margin-right: 20px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; border: 5px solid black; font-size: 15px;margin: 300px;margin-top: 200px;margin-left: 500px;margin-right: 500px;padding-top: 50px;padding-bottom: 50px;">
+        <X id="hesap"></X>
+        <br>
+        <a id="button"><button>List</button></a>
+        <a id="button1"><button>Add account</button></a>
+        <a href="http://127.0.0.1:3000/"><button>Back</button></a>
+    </div>
+    <script>
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+
+        document.getElementById("hesap").innerHTML = params.hesap;
+        document.getElementById("button").href = "http://127.0.0.1:3000/liste/"+window.location.search+"&yetki=1"
+        document.getElementById("button1").href = "http://127.0.0.1:3000/hekle/"+window.location.search
+    </script>
+</body>
+</html>
