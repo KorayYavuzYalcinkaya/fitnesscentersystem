@@ -4,12 +4,12 @@
         "sifre":"password3",
         "yetki":2
     },
-    "moderator":{
+    "customer":{
         "sifre":"password2",
         "yetki":0,
         "bitis":"10/11/2024"
     },
-    "customer":{
+    "moderator":{
         "sifre":"password1",
         "yetki":1
     }
